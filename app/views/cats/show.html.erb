@@ -1,0 +1,14 @@
+<html>
+  <h1><%= @cat.name %></h1>
+    <table>
+      <th> <%= "#{@cat.name}'s attributes: " %> </th>
+     <% @cat.attributes.each do |attribute| %>
+
+      <tr>
+        <td><%= attribute.first %></td>
+        <td><%= attribute.last %></td>
+      </tr>
+
+    <% end %>
+  </table>
+</html>
