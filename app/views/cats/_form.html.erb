@@ -1,0 +1,27 @@
+<form method="POST" action="<%= @cat.id ? cat_url(@cat) : cats_url %>">
+  <input type="HIDDEN" name="_method" value=<%= @cat.id ? "PATCH": "POST" %>>
+  <label for="cat-name">Name: </label>
+    <input id="cat-name" type="text" name="cat[name]" value="<%=  @cat.name %>"><br>
+
+  <label for="cat-sex">Gender: </label>
+  <input id="cat-sex" type="radio" name="cat[sex]" value="M" <%= 'checked="true"' if @cat.sex == "M" %> > Male
+  <input id="cat-sex" type="radio" name="cat[sex]" value="F" <%= 'checked="true"' if @cat.sex == "F" %> > Female <br>
+
+  <label for="cat-color">Color: </label>
+  <select id="cat-color" name="cat[color]">
+      <option value="<%= @cat.color%>" > <%= @cat.color %></option>
+  <% Cat::COLORS.each do |color| %>
+  <% next if color == @cat.color %>
+    <option value="<%=  color %>"> <%= color %></option>
+    <% end %>
+  </select><br>
+
+  <label for="cat-birthdate">Birthdate: </label>
+  <input id="cat-birthdate" type="date" name="cat[birthdate]" value="<%= @cat.birthdate %>"><br>
+
+  <label for="cat-description">Fond Memories: </label>
+  <textarea id="cat-description" rows="10" cols="40" name="cat[description]" ><%= @cat.description %></textarea><br>
+
+  <button><%= @cat.id ? "Update" : "Create" %></button>
+
+</form>

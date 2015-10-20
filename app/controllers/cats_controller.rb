@@ -13,6 +13,7 @@ class CatsController < ApplicationController
   end
 
   def new
+    @cat = Cat.new
     render :new
   end
 
@@ -23,6 +24,21 @@ class CatsController < ApplicationController
       redirect_to(controller: :cats, action: :show, id: @cat.id)
     else
       render json: "Save failed.", status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @cat = Cat.find(params[:id])
+    render :edit
+  end
+
+  def update
+    @cat = Cat.find(params[:id])
+
+    if @cat.update(cat_params)
+      redirect_to(controller: :cats, action: :show, id: @cat.id)
+    else
+      render json: "Update failed.", status: :unprocessable_entity
     end
   end
 
