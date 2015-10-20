@@ -21,7 +21,7 @@ class CatsController < ApplicationController
     @cat = Cat.new(cat_params)
 
     if @cat.save
-      redirect_to(controller: :cats, action: :show, id: @cat.id)
+      redirect_to(cat_url(@cat))
     else
       render json: "Save failed.", status: :unprocessable_entity
     end
@@ -36,15 +36,16 @@ class CatsController < ApplicationController
     @cat = Cat.find(params[:id])
 
     if @cat.update(cat_params)
-      redirect_to(controller: :cats, action: :show, id: @cat.id)
+      redirect_to(cat_url(@cat))
     else
-      render json: "Update failed.", status: :unprocessable_entity
+      flash[:errors] = @cat.errors.full_messages.to_s
+      redirect_to(edit_cat_url(@cat))
     end
   end
 
   private
     def cat_params
-      params[:cat].permit(:birthdate, :color, :name, :sex, :description)
+      params.require(:cat).permit(:birthdate, :color, :name, :sex, :description)
     end
 
 end

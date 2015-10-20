@@ -1,0 +1,22 @@
+<html>
+  <h1><%="Rental Details for #{@rental.cat.name}"%></h1>
+    <table>
+      <th>Rental Details</th>
+
+      <tr>
+        <td>Cat: </td>
+        <td><%= @rental.cat.name %></td>
+      </tr>
+
+      <tr>
+        <td>Start Date: </td>
+        <td><%= @rental.start_date %></td>
+      </tr>
+
+      <tr>
+        <td>End Date: </td>
+        <td><%= @rental.end_date %></td>
+      </tr>
+
+  </table>
+</html>
