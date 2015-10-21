@@ -1,5 +1,8 @@
 <form method="POST" action="<%= cat.persisted? ? cat_url(cat) : cats_url %>">
   <input type="hidden" name="_method" value="<%= cat.id ? "PATCH": "POST" %>">
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
   <label for="cat-name">Name: </label>
     <input id="cat-name" type="text" name="cat[name]" value="<%=  cat.name %>"><br>
 

@@ -2,7 +2,12 @@
 <html>
 <head>
   <title>NinetyNineCats</title>
-
+    <h3> <%= logged_in? ? "Welcome back, #{current_user.name}!" : ""%></h3>
+    <form method="POST" action="<%= logged_in? ? sessions_url : new_sessions_url %>">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="hidden" name="_method" value="<%= logged_in?  ? "DELETE" : "GET" %>">
+        <button name="login_logout"><%= logged_in? ? "Logout" : "Login" %></button>
+    </form>
 </head>
 <body>
 
