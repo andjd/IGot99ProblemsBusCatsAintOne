@@ -4,6 +4,10 @@ class CatRentalRequest < ActiveRecord::Base
   validate :time_must_move_forward
 
   belongs_to :cat
+  belongs_to :requester,
+    class_name: 'User',
+    foreign_key: :user_id,
+    primary_key: :id
 
 
   def overlapping_requests

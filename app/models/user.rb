@@ -5,7 +5,19 @@ class User < ActiveRecord::Base
 
   attr_reader :password
 
-  
+  has_many :cats, dependent: :destroy
+
+  has_many :requests,
+    class_name: 'CatRentalRequest',
+    primary_key: :id,
+    foreign_key: :user_id,
+    dependent: :destroy
+
+  has_many :requested_cats,
+    through: :requests,
+    source: :cat
+
+
 
   def self.find_by_credentials(name, password)
     @current_user ||= User.find_by_name(name)
