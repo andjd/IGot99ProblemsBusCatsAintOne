@@ -11,4 +11,31 @@
 
     <% end %>
   </table>
+
+  <!-- Show Rental Requests -->
+  <% if current_user.id == @cat.user_id %>
+  <table>
+
+    <th> <%= "#{@cat.name}'s rental requests: " %> </th>
+
+      <tr><strong>
+        <td>Start Date</td>
+        <td>End Date</td>
+        <td>Requester</td>
+        <td></td>
+        <td></td>
+      </strong></tr>
+
+      <% @cat.cat_rental_requests.each do |rental| %>
+
+        <tr>
+          <td><%=rental.start_date%></td>
+          <td><%=rental.end_date%></td>
+          <td><%=rental.requester.name%></td>
+          <td><button>Approve</button></td>
+          <td><button>Deny</button></td>
+        </tr>
+
+    <% end %>
+  <% end %>
 </html>
